@@ -1,0 +1,54 @@
+# File Name: firstapp.py
+#:kivy 1.11.1
+
+
+WindowManager:
+    MainWindow:
+    SecondWindow:
+
+
+
+
+<MainWindow>:
+    name:"First_Page"
+
+    Image:
+        source: 'hpomen.jpg'
+        size: self.texture_size
+        Label:
+            text:"Application"
+            pos:(350,500)
+            canvas.after:
+                Color:
+                    rgba: 1,0,0,.5
+        Label:
+            text:"Name: "
+            pos:(150,235)
+        TextInput:
+            id:my_text
+            text:"Enter Name"
+            pos:(230,270)
+            height:30
+            width:500       
+        Button:
+            text:"Click Me"
+            on_release:
+                app.root.current="Second_Page"
+                app.root.screens[1].ids.my_label.text=root.ids.my_text.text
+
+<SecondWindow>:
+    name:"Second_Page"
+
+    Image:
+        source:"hpomen.jpg"
+        size:self.texture_size
+        Label:
+            id:my_label
+            text: "Welcome"
+            pos:(150,235)
+            canvas.after:
+                Color:
+                    rgba: 1,0,0,.5
+        Button:
+            text:"Go Back"
+            on_release:app.root.current="First_Page"
