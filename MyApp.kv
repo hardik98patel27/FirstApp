@@ -17,24 +17,28 @@ WindowManager:
         size: self.texture_size
         Label:
             text:"Application"
-            pos:(350,500)
+            font_size:70
+            pos:(900,900)
             canvas.after:
                 Color:
                     rgba: 1,0,0,.5
         Label:
-            text:"Name: "
-            pos:(150,235)
+            text:"Name : "
+            font_size: 50
+            pos:(50,700)
         TextInput:
             id:my_text
             text:"Enter Name"
-            pos:(230,270)
-            height:30
-            width:500       
+            font_size:50
+            pos:(200,700)
+            width:600
         Button:
             text:"Click Me"
+            font_size: 30
+            width:2000
             on_release:
                 app.root.current="Second_Page"
-                app.root.screens[1].ids.my_label.text=root.ids.my_text.text
+                app.root.screens[1].ids.my_label.text= "Hello " + root.ids.my_text.text
 
 <SecondWindow>:
     name:"Second_Page"
@@ -45,10 +49,13 @@ WindowManager:
         Label:
             id:my_label
             text: "Welcome"
-            pos:(150,235)
+            font_size:70
+            pos:(900,900)
             canvas.after:
                 Color:
                     rgba: 1,0,0,.5
         Button:
             text:"Go Back"
+            font_size: 30
+            width:2000
             on_release:app.root.current="First_Page"
