@@ -1,8 +1,10 @@
 # File Name: firstapp.py
 #:kivy 1.11.1
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
 
 
 WindowManager:
+    transition:SlideTransition()
     MainWindow:
     SecondWindow:
 
@@ -30,6 +32,7 @@ WindowManager:
             id:my_text
             text:"Enter Name"
             font_size:50
+            multiline:False
             pos:(200,700)
             width:600
         Button:
@@ -37,25 +40,27 @@ WindowManager:
             font_size: 30
             width:2000
             on_release:
+                app.root.transition=SlideTransition(direction="left")
                 app.root.current="Second_Page"
                 app.root.screens[1].ids.my_label.text= "Hello " + root.ids.my_text.text
 
 <SecondWindow>:
     name:"Second_Page"
-
     Image:
         source:"hpomen.jpg"
         size:self.texture_size
-        Label:
-            id:my_label
-            text: "Welcome"
-            font_size:70
-            pos:(900,900)
-            canvas.after:
-                Color:
-                    rgba: 1,0,0,.5
+        Scatter:
+            Label:
+                id:my_label
+                font_size:70
+                pos:(900,900)
+                canvas.after:
+                    Color:
+                        rgba: 1,0,0,.5
         Button:
             text:"Go Back"
             font_size: 30
             width:2000
-            on_release:app.root.current="First_Page"
+            on_release:
+                app.root.transition=SlideTransition(direction="right")
+                app.root.current="First_Page"
